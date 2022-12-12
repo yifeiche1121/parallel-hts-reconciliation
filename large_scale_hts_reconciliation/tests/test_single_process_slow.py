@@ -4,14 +4,15 @@ import pytest
 import itertools
 from collections import defaultdict
 
-DATASETS = ["m5_hobbies"] #, "m5_full"]
+DATASETS = ["tourism_small"]
 
-num_leaves = {"m5_hobbies": 5650, "m5_full": 30490}
-num_nodes = {"m5_hobbies": 6218, "m5_full": 33549}
-num_levels = {"m5_hobbies": 4, "m5_full": 4}
+hierarchy_prefix = {"tourism_small": "tourism"}
+num_leaves = {"tourism_small": 56}
+num_nodes = {"tourism_small": 89}
+num_levels = {"tourism_small": 4}
 
 
-ROOT = "/home/peiyuan20013/large-scale-hts-reconciliation/large_scale_hts_reconciliation"  # "/data/cmu/large-scale-hts-reconciliation/"
+ROOT = "/home/yifeiche/large-scale-hts-reconciliation/large_scale_hts_reconciliation"  # "/data/cmu/large-scale-hts-reconciliation/"
 data_dir = ROOT + "/notebooks/"
 
 S_compacts = {}
@@ -21,7 +22,7 @@ gts = {}
 yhats = {}
 
 for DATA_ROOT in DATASETS:
-    S_compact = np.load(open(data_dir + DATA_ROOT + "/m5_hierarchy_parent.npy", "rb"))
+    S_compact = np.load(open(data_dir + DATA_ROOT + "/parent.npy", "rb"))
     top_down_p = np.load(open(data_dir + DATA_ROOT + "/top_down_tensor.npy", "rb"))[
         :, 0
     ].reshape(-1, 1)
@@ -29,7 +30,7 @@ for DATA_ROOT in DATASETS:
         :, 0
     ].reshape(-1, 1)
 
-    yhat = np.load(open(data_dir + DATA_ROOT + "/pred_tensor.npy", "rb"))
+    yhat = np.load(open(data_dir + DATA_ROOT + "/yhat_tensor.npy", "rb"))
     gt = np.load(open(data_dir + DATA_ROOT + "/gt_tensor.npy", "rb"))
 
     S_compacts[DATA_ROOT] = S_compact
