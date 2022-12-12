@@ -21,7 +21,7 @@ num_nodes = {"tourism_small": 89}
 num_levels = {"tourism_small": 4}
 
 
-ROOT = "/home/yifeiche/large-scale-hts-reconciliation/large_scale_hts_reconciliation"  # "/data/cmu/large-scale-hts-reconciliation/"
+ROOT = "/home/yifeiche/parallel-hts-reconciliation/large_scale_hts_reconciliation"  # "/data/cmu/large-scale-hts-reconciliation/"
 data_dir = ROOT + "/notebooks/"
 
 S_compacts = {}
