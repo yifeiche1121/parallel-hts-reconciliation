@@ -3,26 +3,26 @@ import lhts
 from timeit import default_timer as timer
 
 def main():
-    ROOT = "/data/cmu/large-scale-hts-reconciliation/"
+    ROOT = "/afs/andrew.cmu.edu/usr2/yifeiche/private/15418/large-scale-hts-reconciliation/"
     data_dir = ROOT + "notebooks/"
 
-    S_compact = np.load(open(data_dir + 'm5_hierarchy_parent.npy', 'rb'))
-    yhat = np.load(open(data_dir + 'm5_prediction_raw/pred_tensor.npy', 'rb'))
-    gt = np.load(open(data_dir + 'm5_prediction_raw/gt_tensor.npy', 'rb'))
-    top_down_p = np.load(open(data_dir + 'm5_prediction_raw/top_down_tensor.npy', 'rb'))[:, 0].reshape(-1, 1)
-    level_2_p = np.load(open(data_dir + 'm5_prediction_raw/level_2_tensor.npy', 'rb'))[:, 0].reshape(-1, 1)
-    
+    S_compact = np.load(open(data_dir + 'TourismSmall/parent.npy', 'rb'))
+    yhat = np.load(open(data_dir + 'TourismSmall/yhat_tensor.npy', 'rb'))
+    gt = np.load(open(data_dir + 'TourismSmall/gt_tensor.npy', 'rb'))
+    top_down_p = np.load(open(data_dir + 'TourismSmall/top_down_tensor.npy', 'rb'))[:, 0].reshape(-1, 1)
+    level_2_p = np.load(open(data_dir + 'TourismSmall/level_2_tensor.npy', 'rb'))[:, 0].reshape(-1, 1)
+
     print("Before Reconciliation: ", lhts.smape(yhat, gt))
 
     start = timer()
-    rec = lhts.reconcile_sparse_algo("middle_out", S_compact, 5650, 6218, 4, yhat, level_2_p, 2, 0.0)
+    rec = lhts.reconcile_sparse_algo("middle_out", S_compact, 56, 89, 4, yhat, level_2_p, 2, 0.0)
     end = timer()
     elapsed = round(end - start, 4)
     print("Middle out (algo): ", str(elapsed), " ", lhts.smape(rec, gt))
 
 
     start = timer()
-    rec2 = lhts.reconcile_sparse_matrix("middle_out", S_compact, 5650, 6218, 4, yhat, level_2_p, 2, 0.0)
+    rec2 = lhts.reconcile_sparse_matrix("middle_out", S_compact, 56, 89, 4, yhat, level_2_p, 2, 0.0)
     end = timer()
     elapsed = round(end - start, 4)
     print("Middle out (sparse matrix): ", str(elapsed), " ", lhts.smape(rec2, gt))
