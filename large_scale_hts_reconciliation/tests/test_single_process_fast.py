@@ -4,12 +4,12 @@ import pytest
 import itertools
 from collections import defaultdict
 
-DATASETS = ["tourism_small"]
+DATASETS = ["TourismSmall"]
 
-hierarchy_prefix = {"tourism_small": "tourism"}
-num_leaves = {"tourism_small": 56}
-num_nodes = {"tourism_small": 89}
-num_levels = {"tourism_small": 4}
+hierarchy_prefix = {"TourismSmall": "tourism"}
+num_leaves = {"TourismSmall": 56}
+num_nodes = {"TourismSmall": 89}
+num_levels = {"TourismSmall": 4}
 
 
 ROOT = "/home/yifeiche/parallel-hts-reconciliation/large_scale_hts_reconciliation"  # "/data/cmu/large-scale-hts-reconciliation/"
