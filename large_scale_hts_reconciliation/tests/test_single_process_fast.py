@@ -23,7 +23,6 @@ yhats = {}
 
 for DATA_ROOT in DATASETS:
     S_compact = np.load(open(data_dir + DATA_ROOT + "/parent.npy", "rb"))
-    print(S_compact)
     top_down_p = np.load(open(data_dir + DATA_ROOT + "/top_down_tensor.npy", "rb"))[
         :, 0
     ].reshape(-1, 1)
