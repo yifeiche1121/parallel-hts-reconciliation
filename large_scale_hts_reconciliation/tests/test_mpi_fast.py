@@ -16,7 +16,7 @@ from timeit import default_timer as timer
 DATASETS = ["TourismSmall", "Labour"]
 
 hierarchy_prefix = {"TourismSmall": "tourism", "Labour": "labour"}
-num_leaves = {"TourismSmall": 57, "Labour": 32}
+num_leaves = {"TourismSmall": 56, "Labour": 32}
 num_nodes = {"TourismSmall": 89, "Labour": 57}
 num_levels = {"TourismSmall": 4, "Labour": 4}
 
