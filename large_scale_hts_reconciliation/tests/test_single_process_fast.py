@@ -2,14 +2,10 @@ import lhts
 import numpy as np
 import pytest
 import itertools
+import memory_profiler
 import sqlite3
-import pandas as pd
-from collections import defaultdict
 
-con = sqlite3.connect(".pymon")
-df = pd.read_sql_query("SELECT * from TEST_METRICS", con)
-df.to_csv('metrics.csv')
-con.close()
+from collections import defaultdict
 
 DATASETS = ["TourismSmall", "Labour"]
 
@@ -125,6 +121,13 @@ def test_single_process_fast(benchmark, mode, method, dataset):
     for (i, j) in itertools.combinations(d[dataset][method].values(), 2):
         assert np.allclose(i, j, rtol=1e-3, atol=1e-5)
 
-df = pd.read_sql_query("SELECT * from TEST_METRICS", con)
-df.to_csv('metrics.csv')
-con.close()
+# Connect to the in-memory database
+conn = sqlite3.connect(':memory:')
+
+# Query the data
+cursor = conn.cursor()
+cursor.execute('SELECT * FROM memory_profiler')
+
+# Print the results
+print(cursor.fetchall())
+conn.close()
