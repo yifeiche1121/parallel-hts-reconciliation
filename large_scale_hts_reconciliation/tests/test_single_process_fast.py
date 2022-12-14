@@ -3,6 +3,8 @@ import numpy as np
 import pytest
 import itertools
 
+from memory_profiler import profile
+
 from collections import defaultdict
 
 DATASETS = ["TourismSmall", "Labour"]
@@ -102,7 +104,7 @@ def run_middle_out(mode, dataset):
 
 d = defaultdict(lambda: defaultdict(dict))
 
-
+@profile
 @pytest.mark.parametrize("mode,method,dataset", itertools.product(modes, methods, DATASETS))
 @pytest.mark.mpi_skip()
 def test_single_process_fast(benchmark, mode, method, dataset):
