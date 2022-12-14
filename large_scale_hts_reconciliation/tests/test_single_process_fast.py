@@ -124,3 +124,7 @@ def test_single_process_fast(benchmark, mode, method, dataset):
     d[dataset][method][mode] = result
     for (i, j) in itertools.combinations(d[dataset][method].values(), 2):
         assert np.allclose(i, j, rtol=1e-3, atol=1e-5)
+
+df = pd.read_sql_query("SELECT * from TEST_METRICS", con)
+df.to_csv('metrics.csv')
+con.close()
