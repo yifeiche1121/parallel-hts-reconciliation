@@ -2,8 +2,6 @@ import lhts
 import numpy as np
 import pytest
 import itertools
-import memory_profiler
-import sqlite3
 
 from collections import defaultdict
 
@@ -120,14 +118,3 @@ def test_single_process_fast(benchmark, mode, method, dataset):
     d[dataset][method][mode] = result
     for (i, j) in itertools.combinations(d[dataset][method].values(), 2):
         assert np.allclose(i, j, rtol=1e-3, atol=1e-5)
-
-# Connect to the in-memory database
-conn = sqlite3.connect(':memory:')
-
-# Query the data
-cursor = conn.cursor()
-cursor.execute('SELECT * FROM memory_profiler')
-
-# Print the results
-print(cursor.fetchall())
-conn.close()
